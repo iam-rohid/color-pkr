@@ -8,12 +8,16 @@ export type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 const ThemeProvider = ({ children }: { children: JSX.Element }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("dark") != null
+  );
 
   useEffect(() => {
     document.documentElement.classList.remove("dark");
+    localStorage.removeItem("dark");
     if (darkMode) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("dark", "dark");
     }
   }, [darkMode]);
 
