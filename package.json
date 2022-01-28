@@ -1,24 +1,71 @@
 {
-  "name": "color-picker",
+  "name": "color-pkr",
   "version": "0.0.0",
+  "description": "A usefull color picker app",
+  "main": "main/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Rohidul Islam",
+    "email": "rohidul209@gmail.com",
+    "url": "https://rohidulislam.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rohidisdev/color-pkr"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/rohid"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/rohid"
+    }
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "npm run build:electron && electron .",
+    "build": "npm run build:vite && npm run build:electron",
+    "build:vite": "vite build",
+    "build:electron": "tsc -p electron",
+    "dist": "npm run build && electron-builder",
+    "pack": "npm run build && electron-builder --dir",
+    "clean": "rimraf dist main src/out",
+    "type-check": "tsc",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix"
   },
   "dependencies": {
+    "electron-window-state": "^5.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@types/node": "^17.0.13",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.2",
+    "concurrently": "^7.0.0",
+    "electron": "^16.0.8",
+    "electron-is-dev": "^2.0.0",
     "postcss": "^8.4.5",
     "sass": "^1.49.0",
     "tailwindcss": "^3.0.17",
     "typescript": "^4.4.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "wait-on": "^6.0.0"
+  },
+  "build": {
+    "asar": true,
+    "files": [
+      "main",
+      "src/out"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    }
   }
 }
