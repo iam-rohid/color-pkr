@@ -1,6 +1,6 @@
 {
   "name": "color-pkr",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A usefull color picker app",
   "main": "main/index.js",
   "license": "MIT",
