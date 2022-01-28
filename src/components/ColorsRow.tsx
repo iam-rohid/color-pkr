@@ -7,12 +7,12 @@ const ColorsRow = ({
   description,
 }: {
   colors: string[];
-  title: string;
+  title?: string;
   description?: string;
 }) => {
   return (
     <div>
-      <p className="font-medium mb-1">{title}</p>
+      {title && <p className="font-medium mb-1">{title}</p>}
       <div className="w-full flex flex-col sm:flex-row rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800">
         {colors.map((color, i) => (
           <ColorCell color={color} key={i} />

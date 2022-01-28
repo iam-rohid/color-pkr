@@ -25,6 +25,8 @@ export interface IColorDetails {
   shades: string[];
   tones: string[];
   tints: string[];
+  tailwindcss: string[];
+  hues: string[];
   isLight: boolean;
   isDark: boolean;
   luminance: number;

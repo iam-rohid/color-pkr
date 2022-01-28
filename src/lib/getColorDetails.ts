@@ -27,6 +27,7 @@ const getColorDetails = (
   shadeCount: number = 11
 ): IColorDetails => {
   const color = colord(`#${hex}`);
+
   let colorDetails: IColorDetails = {
     name: color.toName({ closest: true }) || "Unknown Color",
     hex: color.toHex(),
@@ -42,6 +43,30 @@ const getColorDetails = (
     shades: color.shades(shadeCount).map((c) => c.toHex()),
     tones: color.tones(shadeCount).map((c) => c.toHex()),
     tints: color.tints(shadeCount).map((c) => c.toHex()),
+    tailwindcss: [
+      ...color
+        .tints(7)
+        .slice(0, 6)
+        .reverse()
+        .map((c) => c.toHex()),
+      ...color
+        .shades(6)
+        .slice(1, 5)
+        .map((c) => c.toHex()),
+    ],
+    hues: [
+      color.hue(205).toHex(),
+      color.hue(215).toHex(),
+      color.hue(225).toHex(),
+      color.hue(235).toHex(),
+      color.hue(245).toHex(),
+      color.hue(255).toHex(),
+      color.hue(265).toHex(),
+      color.hue(275).toHex(),
+      color.hue(285).toHex(),
+      color.hue(295).toHex(),
+      color.hue(305).toHex(),
+    ],
     isDark: color.isDark(),
     isLight: color.isLight(),
     luminance: color.luminance(),

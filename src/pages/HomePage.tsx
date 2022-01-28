@@ -7,6 +7,7 @@ import FullscreenIcon from "../components/icons/FullscreenIcon";
 import CloseIcon from "../components/icons/CloseIcon";
 import ColorHarmonies from "../components/ColorHarmonies";
 import ColorVariations from "../components/ColorVariations";
+import ColorsRow from "../components/ColorsRow";
 
 const HomePage = () => {
   const [color, setColor] = useState("6D39FF");
