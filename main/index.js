@@ -15,14 +15,15 @@ const createWindow = () => {
         defaultHeight: 600,
     });
     mainWindow = new electron_1.BrowserWindow({
-        minWidth: 600,
-        minHeight: 400,
+        minWidth: 400,
+        minHeight: 500,
         width: windowState.width,
         height: windowState.height,
         x: windowState.x,
         y: windowState.y,
+        autoHideMenuBar: true,
         webPreferences: {
-            preload: path_1.default.join(__dirname, "preload.ts"),
+            preload: path_1.default.join(__dirname, "preload.js"),
         },
     });
     const port = process.env.PORT || 3000;

@@ -1,11 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "tailwindcss/tailwind.css";
+import ThemeProvider from "./hooks/useTheme";
+import { BrowserRouter } from "react-router-dom";
+import "./styles/main.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+  <StrictMode>
+    <BrowserRouter>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </StrictMode>,
+  document.getElementById("root")
+);

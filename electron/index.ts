@@ -13,14 +13,15 @@ const createWindow = () => {
   });
 
   mainWindow = new BrowserWindow({
-    minWidth: 600,
-    minHeight: 400,
+    minWidth: 400,
+    minHeight: 500,
     width: windowState.width,
     height: windowState.height,
     x: windowState.x,
     y: windowState.y,
+    autoHideMenuBar: true,
     webPreferences: {
-      preload: path.join(__dirname, "preload.ts"),
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
