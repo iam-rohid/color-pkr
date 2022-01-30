@@ -26,7 +26,7 @@ const getColorDetails = (
   hex: string,
   shadeCount: number = 11
 ): IColorDetails => {
-  const color = colord(`#${hex}`);
+  const color = colord(`${hex}`);
 
   let colorDetails: IColorDetails = {
     name: color.toName({ closest: true }) || "Unknown Color",
@@ -55,17 +55,17 @@ const getColorDetails = (
         .map((c) => c.toHex()),
     ],
     hues: [
-      color.hue(205).toHex(),
-      color.hue(215).toHex(),
-      color.hue(225).toHex(),
-      color.hue(235).toHex(),
-      color.hue(245).toHex(),
-      color.hue(255).toHex(),
-      color.hue(265).toHex(),
-      color.hue(275).toHex(),
-      color.hue(285).toHex(),
-      color.hue(295).toHex(),
-      color.hue(305).toHex(),
+      color.hue(color.hue() - 50).toHex(),
+      color.hue(color.hue() - 40).toHex(),
+      color.hue(color.hue() - 30).toHex(),
+      color.hue(color.hue() - 20).toHex(),
+      color.hue(color.hue() - 10).toHex(),
+      color.hue(color.hue()).toHex(),
+      color.hue(color.hue() + 10).toHex(),
+      color.hue(color.hue() + 20).toHex(),
+      color.hue(color.hue() + 30).toHex(),
+      color.hue(color.hue() + 40).toHex(),
+      color.hue(color.hue() + 50).toHex(),
     ],
     isDark: color.isDark(),
     isLight: color.isLight(),

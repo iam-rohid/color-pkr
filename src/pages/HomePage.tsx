@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { IColorDetails } from "../types";
 import getColorDetails from "../lib/getColorDetails";
@@ -7,12 +7,15 @@ import FullscreenIcon from "../components/icons/FullscreenIcon";
 import CloseIcon from "../components/icons/CloseIcon";
 import ColorHarmonies from "../components/ColorHarmonies";
 import ColorVariations from "../components/ColorVariations";
-import ColorsRow from "../components/ColorsRow";
-
+import { ChromePicker, Color, SketchPicker } from "react-color";
+import { random } from "colord";
+import ColorPickerIcon from "../components/icons/ColorPickerIcon";
 const HomePage = () => {
-  const [color, setColor] = useState("6D39FF");
+  const [color, setColor] = useState(random().toHex());
   const [colorDetails, setColorDetails] = useState<IColorDetails | null>(null);
   const [fullScreenPreview, setFullScreenPreview] = useState(false);
+
+  const [showColorPicker, setShowColorPicker] = useState(false);
   useEffect(() => {
     setColorDetails(getColorDetails(color));
   }, [color]);
@@ -29,7 +32,7 @@ const HomePage = () => {
       >
         <div
           style={{
-            backgroundColor: `#${color}`,
+            backgroundColor: color,
           }}
           className={`inset-0 flex items-center justify-center ${
             fullScreenPreview ? "fixed z-50" : "absolute rounded-xl"
@@ -59,9 +62,17 @@ const HomePage = () => {
           onClick={() => {
             setFullScreenPreview(true);
           }}
-          className="w-10 h-10 right-2 bottom-2 absolute flex items-center justify-center opacity-70 hover:opacity-100"
+          className="w-10 h-10 right-2 bottom-2 absolute flex items-center justify-center"
         >
           <FullscreenIcon className="w-6 h-6" />
+        </button>
+        <button
+          onClick={() => {
+            setShowColorPicker(true);
+          }}
+          className="w-10 h-10 right-14 bottom-2 absolute flex items-center justify-center"
+        >
+          <ColorPickerIcon className="w-6 h-6" />
         </button>
       </div>
 
@@ -83,6 +94,27 @@ const HomePage = () => {
         </p>
         <ColorHarmonies colorDetails={colorDetails} />
       </div>
+
+      {showColorPicker && (
+        <div className="fixed inset-0 p-4">
+          <div
+            className="absolute inset-0"
+            onClick={() => {
+              setShowColorPicker(false);
+            }}
+          ></div>
+          <div className="p-8 absolute inset-0 flex items-center justify-center pointer-events-none">
+            <ChromePicker
+              color={color}
+              onChange={(_color) => {
+                setColor(_color.hex);
+              }}
+              disableAlpha={false}
+              className="pointer-events-auto"
+            />
+          </div>
+        </div>
+      )}
     </Container>
   );
 };
