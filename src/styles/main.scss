@@ -3,3 +3,45 @@
 .dark {
   color-scheme: dark;
 }
+
+.color-slider {
+  -webkit-appearance: none;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.color-slider.r {
+  background: linear-gradient(to right, black, red);
+}
+.color-slider.g {
+  background: linear-gradient(to right, black, green);
+}
+.color-slider.b {
+  background: linear-gradient(to right, black, blue);
+}
+
+.color-slider:hover {
+  opacity: 1;
+}
+
+.color-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  height: 2rem;
+  aspect-ratio: 1;
+  border-radius: 100px;
+  border: 4px solid white;
+  box-shadow: -2px 0px 6px rgba($color: #000000, $alpha: 0.2);
+}
+
+.color-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #04aa6d;
+  cursor: pointer;
+}

@@ -7,17 +7,18 @@ import FullscreenIcon from "../components/icons/FullscreenIcon";
 import CloseIcon from "../components/icons/CloseIcon";
 import ColorHarmonies from "../components/ColorHarmonies";
 import ColorVariations from "../components/ColorVariations";
-import { ChromePicker, Color, SketchPicker } from "react-color";
-import { random } from "colord";
+import { ChromePicker } from "react-color";
+import { Colord, random } from "colord";
 import ColorPickerIcon from "../components/icons/ColorPickerIcon";
+import ColorPicker from "../components/ColorPicker";
 const HomePage = () => {
-  const [color, setColor] = useState(random().toHex());
+  const [color, setColor] = useState<Colord>(random());
   const [colorDetails, setColorDetails] = useState<IColorDetails | null>(null);
   const [fullScreenPreview, setFullScreenPreview] = useState(false);
 
   const [showColorPicker, setShowColorPicker] = useState(false);
   useEffect(() => {
-    setColorDetails(getColorDetails(color));
+    setColorDetails(getColorDetails(color.toHex()));
   }, [color]);
 
   if (!colorDetails) return null;
@@ -32,7 +33,7 @@ const HomePage = () => {
       >
         <div
           style={{
-            backgroundColor: color,
+            backgroundColor: color.toHex(),
           }}
           className={`inset-0 flex items-center justify-center ${
             fullScreenPreview ? "fixed z-50" : "absolute rounded-xl"
@@ -96,21 +97,22 @@ const HomePage = () => {
       </div>
 
       {showColorPicker && (
-        <div className="fixed inset-0 p-4">
+        <div className="fixed inset-0 p-4 z">
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 bg-black/50"
             onClick={() => {
               setShowColorPicker(false);
             }}
           ></div>
-          <div className="p-8 absolute inset-0 flex items-center justify-center pointer-events-none">
-            <ChromePicker
+          <div className="p-8 absolute inset-0 flex items-center justify-center pointer-events-none z-50">
+            <ColorPicker
               color={color}
-              onChange={(_color) => {
-                setColor(_color.hex);
+              setColor={(value) => {
+                setColor(value);
               }}
-              disableAlpha={false}
-              className="pointer-events-auto"
+              onClose={() => {
+                setShowColorPicker(false);
+              }}
             />
           </div>
         </div>
