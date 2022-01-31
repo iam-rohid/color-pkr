@@ -1,4 +1,4 @@
-import { RgbaColor } from "colord";
+import { colord, RgbaColor } from "colord";
 import React, { useEffect, useState } from "react";
 import ColorSlider from "./ColorSlider";
 
@@ -26,7 +26,15 @@ const RGBAPicker = ({
         }
         maxValue={255}
         style={{
-          background: `linear-gradient(to right, rgb(0, ${rgba.g}, ${rgba.b}), rgb(255, ${rgba.g}, ${rgba.b}))`,
+          background: `linear-gradient(to right, ${colord({
+            ...rgba,
+            r: 0,
+            a: 1,
+          }).toHex()}, ${colord({
+            ...rgba,
+            r: 255,
+            a: 1,
+          }).toHex()})`,
         }}
       />
       <ColorSlider
@@ -39,7 +47,15 @@ const RGBAPicker = ({
         }
         maxValue={255}
         style={{
-          background: `linear-gradient(to right, rgba(${rgba.r}, 0, ${rgba.b}),  rgb(${rgba.r}, 255, ${rgba.b}))`,
+          background: `linear-gradient(to right, ${colord({
+            ...rgba,
+            g: 0,
+            a: 1,
+          }).toHex()}, ${colord({
+            ...rgba,
+            g: 255,
+            a: 1,
+          }).toHex()})`,
         }}
       />
       <ColorSlider
@@ -52,7 +68,15 @@ const RGBAPicker = ({
         }
         maxValue={255}
         style={{
-          background: `linear-gradient(to right, rgb(${rgba.r}, ${rgba.g}, 0), rgb(${rgba.r}, ${rgba.g}, 255))`,
+          background: `linear-gradient(to right, ${colord({
+            ...rgba,
+            b: 0,
+            a: 1,
+          }).toHex()}, ${colord({
+            ...rgba,
+            b: 255,
+            a: 1,
+          }).toHex()})`,
         }}
       />
 
@@ -66,7 +90,13 @@ const RGBAPicker = ({
         }
         maxValue={100}
         style={{
-          background: `linear-gradient(to right, rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, 0), rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, 1))`,
+          background: `linear-gradient(to right, ${colord({
+            ...rgba,
+            a: 0,
+          }).toHex()}, ${colord({
+            ...rgba,
+            a: 1,
+          }).toHex()})`,
         }}
       />
     </div>

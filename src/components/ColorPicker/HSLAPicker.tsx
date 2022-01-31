@@ -1,4 +1,4 @@
-import { HslaColor } from "colord";
+import { colord, HslaColor } from "colord";
 import React, { useEffect, useState } from "react";
 import ColorSlider from "./ColorSlider";
 
@@ -39,7 +39,15 @@ const HSLAPicker = ({
         }
         maxValue={100}
         style={{
-          background: `linear-gradient(to right, hsl(${hsl.h}, 0%, ${hsl.l}%),  hsl(${hsl.h}, 100%, ${hsl.l}%))`,
+          background: `linear-gradient(to right, ${colord({
+            ...hsl,
+            s: 0,
+            a: 1,
+          }).toHex()}, ${colord({
+            ...hsl,
+            s: 100,
+            a: 1,
+          }).toHex()})`,
         }}
       />
       <ColorSlider
@@ -52,7 +60,19 @@ const HSLAPicker = ({
         }
         maxValue={100}
         style={{
-          background: `linear-gradient(to right, hsl(${hsl.h}, ${hsl.s}%, 0%), hsl(${hsl.h}, ${hsl.s}%, 50%), hsl(${hsl.h}, ${hsl.s}%, 100%))`,
+          background: `linear-gradient(to right, ${colord({
+            ...hsl,
+            l: 0,
+            a: 1,
+          }).toHex()},${colord({
+            ...hsl,
+            l: 50,
+            a: 1,
+          }).toHex()}, ${colord({
+            ...hsl,
+            l: 100,
+            a: 1,
+          }).toHex()})`,
         }}
       />
 
@@ -66,7 +86,13 @@ const HSLAPicker = ({
         }
         maxValue={100}
         style={{
-          background: `linear-gradient(to right, hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, 0), hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, 1))`,
+          background: `linear-gradient(to right, ${colord({
+            ...hsl,
+            a: 0,
+          }).toHex()}, ${colord({
+            ...hsl,
+            a: 1,
+          }).toHex()})`,
         }}
       />
     </div>

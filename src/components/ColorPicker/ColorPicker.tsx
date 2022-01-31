@@ -1,5 +1,6 @@
-import { Colord, colord, HslaColor, RgbaColor } from "colord";
+import { Colord, colord } from "colord";
 import React, { useEffect, useState } from "react";
+import HSVAPicker from "./HSVAPicker";
 import HSLAPicker from "./HSLAPicker";
 import RGBAPicker from "./RGBAPicker";
 
@@ -42,7 +43,7 @@ const ColorPicker = ({
           }}
         >
           {pickerOptions.map((item) => (
-            <option value={item} key={item}>
+            <option value={item} key={item} className="text-gray-900">
               {item}
             </option>
           ))}
@@ -59,6 +60,13 @@ const ColorPicker = ({
         ) : pickerOption === "HSL" ? (
           <HSLAPicker
             value={newColor.toHsl()}
+            setValue={(value) => {
+              setNewColor(colord(value));
+            }}
+          />
+        ) : pickerOption === "HSB" ? (
+          <HSVAPicker
+            value={newColor.toHsv()}
             setValue={(value) => {
               setNewColor(colord(value));
             }}

@@ -1,3 +1,4 @@
+import React from "react";
 import { IColorDetails } from "../types";
 import ColorsRow from "./ColorsRow";
 

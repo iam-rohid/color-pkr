@@ -10,7 +10,7 @@ import ColorVariations from "../components/ColorVariations";
 import { ChromePicker } from "react-color";
 import { Colord, random } from "colord";
 import ColorPickerIcon from "../components/icons/ColorPickerIcon";
-import ColorPicker from "../components/ColorPicker";
+import ColorPicker from "../components/ColorPicker/ColorPicker";
 const HomePage = () => {
   const [color, setColor] = useState<Colord>(random());
   const [colorDetails, setColorDetails] = useState<IColorDetails | null>(null);
