@@ -1,8 +1,9 @@
 import { Colord, colord } from "colord";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HSVAPicker from "./HSVAPicker";
 import HSLAPicker from "./HSLAPicker";
 import RGBAPicker from "./RGBAPicker";
+import BOXPicker from "./BOXPicker";
 
 const pickerOptions = ["BOX", "RGB", "HSL", "HSB"];
 const ColorPicker = ({
@@ -14,11 +15,8 @@ const ColorPicker = ({
   setColor: (value: Colord) => void;
   onClose: () => void;
 }) => {
-  const [pickerOption, setPickerOption] = useState("RGB");
+  const [pickerOption, setPickerOption] = useState("BOX");
   const [newColor, setNewColor] = useState(color);
-  useEffect(() => {
-    setColor(newColor);
-  }, [newColor]);
 
   return (
     <div className="rounded-xl w-full max-w-xl flex flex-col pointer-events-auto overflow-hidden">
@@ -71,7 +69,14 @@ const ColorPicker = ({
               setNewColor(colord(value));
             }}
           />
-        ) : null}
+        ) : (
+          <BOXPicker
+            value={newColor.toHsv()}
+            setValue={(value) => {
+              setNewColor(colord(value));
+            }}
+          />
+        )}
         <div className="flex items-center gap-2 bg-white dark:bg-gray-800">
           <div className="flex-1"></div>
           <button
