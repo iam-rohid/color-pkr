@@ -70,6 +70,17 @@ const ColorBox = ({
   });
   const [isDragging, setIsDragging] = useState(false);
 
+  useEffect(() => {
+    if (parentRef.current) {
+      const parentWidth = parentRef.current.clientWidth;
+      const parentHeight = parentRef.current.clientHeight;
+      setOffset({
+        x: (color.s * parentWidth) / 100,
+        y: parentHeight - (color.v * parentHeight) / 100,
+      });
+    }
+  }, []);
+
   const onDrag = (e: MouseEvent) => {
     e.preventDefault();
     if (parentRef.current) {
