@@ -7,7 +7,6 @@ import FullscreenIcon from "../components/icons/FullscreenIcon";
 import CloseIcon from "../components/icons/CloseIcon";
 import ColorHarmonies from "../components/ColorHarmonies";
 import ColorVariations from "../components/ColorVariations";
-import { ChromePicker } from "react-color";
 import { Colord, random } from "colord";
 import ColorPickerIcon from "../components/icons/ColorPickerIcon";
 import ColorPicker from "../components/ColorPicker/ColorPicker";
